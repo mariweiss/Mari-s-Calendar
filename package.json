@@ -1,0 +1,34 @@
+{
+  "name": "maris-calendar",
+  "version": "1.0.0",
+  "description": "A calendar app",
+  "author": "Mari",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.mari.calendar",
+    "productName": "Mari's Calendar",
+    "win": {
+      "icon": "icon.ico",
+      "target": "nsis",
+      "forceCodeSigning": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Mari's Calendar"
+    },
+    "files": [
+      "**/*",
+      "assets/**"
+    ]
+  },
+  "devDependencies": {
+    "electron": "^41.5.0",
+    "electron-builder": "^26.8.1"
+  }
+}

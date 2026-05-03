@@ -34,6 +34,6 @@ Built using Electron, it focuses on simplicity, usability, and aesthetic design.
 
 ## 🎥 Demo
 
-[Watch the demo](https://youtube.com/shorts/R5ReN5Vl2uE?feature=share)
+[Watch the demo]()
 
 ---

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>app name</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <div class="titlebar">
+        <span class="title">Mari's</span>
+        <button id="closeBtn">✕</button>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" id="tab-calendar">📅</button>
+        <button class="tab" id="tab-todo">📝</button>
+      </div>
+
+      <!-- View: Calendário -->
+      <div id="view-calendar" class="view active">
+        <div id="calendar">
+          <div id="day"></div>
+          <div id="month"></div>
+          <div id="year"></div>
+        </div>
+        <div id="deadlines-banner"></div>
+      </div>
+
+      <!-- View: To-Do -->
+      <div id="view-todo" class="view">
+        <div class="todo-panel">
+          <div class="todo-add">
+            <input type="text" id="todo-text" placeholder="Nova tarefa..." />
+            <div class="todo-add-row">
+              <input type="date" id="todo-date" />
+              <button id="btn-add">+</button>
+            </div>
+          </div>
+          <ul id="todo-list"></ul>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

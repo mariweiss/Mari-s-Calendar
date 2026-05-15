@@ -1,0 +1,389 @@
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+
+  user-select: none;
+  -webkit-app-region: drag;
+  background-image: url("assets/outer-frame-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  overflow: hidden;
+}
+
+.app {
+    display: flex;
+    flex-direction: column ;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    width: 13.375rem;
+    padding: 1rem 1.0625rem;
+}
+
+button,
+input,
+textarea,
+select {
+  -webkit-app-region: no-drag;
+  cursor: pointer;
+}
+
+.titlebar {
+  width: 100%;          /* ocupa toda a largura do .app */
+  height: 40px;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  -webkit-app-region: drag;
+}
+
+.title{
+    display: flex;
+    width: 157px;
+    padding: 0.25rem 0.625rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.065rem;
+
+    border-radius: 6.25rem;
+    border: 1px solid #C079FF;
+    background: rgba(210, 164, 255, 0.40);
+
+    color: var(--white, #FFF);
+
+    /* text styling */
+    font-family: Pixeboy;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+#closeBtn {
+    position: absolute;
+    right: -12px;          /* fora do oval, no canto direito da titlebar */
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    color: white;       
+    cursor: pointer;
+    -webkit-app-region: no-drag;
+    z-index: 10;
+}
+
+#closeBtn:hover {
+  color: pink;
+}
+
+#calendar {
+    display: flex;
+    width: 11.25rem;
+    height: 10.0625rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    background-image: url("assets/inner-frame-bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.8;
+}
+
+#day{
+    color: #FFF;
+    text-align: center;
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: var(--mid-purple, #B58CD9);
+    font-family: Pixeboy;
+    font-size: 5.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25rem; 
+    letter-spacing: 0.45rem;
+
+    display: flex;
+    width: 11.25rem;
+    height: 4.4375rem;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#month {
+
+    color: #FFF;
+    text-align: center;
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: #B58CD9;
+    font-family: Pixeboy;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25rem; 
+    letter-spacing: 0.3rem;
+
+    width: 8.125rem;
+}
+
+#year {
+    color: #FFF;
+    text-align: center;
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: #B58CD9;
+    font-family: Pixeboy;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25rem;
+    letter-spacing: 0.3rem;
+
+    width: 8.125rem;
+}
+
+/* ── Abas ─────────────────────────────────────────────────── */
+
+.tabs {
+  display: flex;
+  gap: 0.2rem;
+  background: rgba(210, 164, 255, 0.15);
+  border: 1px solid #C079FF;
+  border-radius: 1rem;
+  padding: 0.15rem 0.25rem;
+}
+
+.tab {
+  background: transparent;
+  border: none;
+  border-radius: 0.875rem;
+  padding: 0.1rem 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.tab.active {
+  background: rgba(192, 121, 255, 0.5);
+  color: #FFF;
+}
+
+.tab:hover:not(.active) {
+  background: rgba(192, 121, 255, 0.2);
+}
+
+/* ── Views ────────────────────────────────────────────────── */
+
+.view {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.view.active {
+  display: flex;
+}
+
+/* ── Banner de prazos (calendário) ───────────────────────── */
+
+#deadlines-banner {
+  display: none;
+  width: 11.25rem;
+  background: rgba(255, 179, 193, 0.15);
+  border: 1px solid #FFB3C1;
+  border-radius: 0.375rem;
+  padding: 0.25rem 0.5rem;
+  color: #FFD6DF;
+  font-family: Pixeboy;
+  font-size: 0.7rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+#deadlines-banner.visible {
+  display: block;
+}
+
+/* ── Painel To-Do ─────────────────────────────────────────── */
+
+.todo-panel {
+  width: 11.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.todo-add {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.todo-add-row {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+#todo-text {
+  width: 100%;
+  background: rgba(210, 164, 255, 0.12);
+  border: 1px solid #C079FF;
+  border-radius: 0.5rem;
+  padding: 0.3rem 0.5rem;
+  color: #FFF;
+  font-family: Pixeboy;
+  font-size: 0.8rem;
+  outline: none;
+  cursor: text;
+}
+
+#todo-text::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+#todo-date {
+  flex: 1;
+  background: rgba(210, 164, 255, 0.12);
+  border: 1px solid #C079FF;
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.35rem;
+  color: #FFF;
+  font-family: Pixeboy, monospace;
+  font-size: 0.65rem;
+  outline: none;
+  min-width: 0;
+}
+
+#todo-date::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+#btn-add {
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+  background: rgba(192, 121, 255, 0.45);
+  border: 1px solid #C079FF;
+  border-radius: 0.5rem;
+  color: #FFF;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#btn-add:hover {
+  background: rgba(192, 121, 255, 0.7);
+}
+
+/* ── Lista de tarefas ─────────────────────────────────────── */
+
+#todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-height: 5.5rem;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #C079FF transparent;
+}
+
+#todo-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+#todo-list::-webkit-scrollbar-thumb {
+  background: #C079FF;
+  border-radius: 2px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: rgba(210, 164, 255, 0.1);
+  border: 1px solid rgba(192, 121, 255, 0.35);
+  border-radius: 0.375rem;
+  padding: 0.25rem 0.35rem;
+}
+
+.todo-item.done {
+  opacity: 0.45;
+}
+
+.todo-item input[type="checkbox"] {
+  accent-color: #C079FF;
+  width: 0.875rem;
+  height: 0.875rem;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.todo-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 0.05rem;
+}
+
+.todo-text {
+  color: #FFF;
+  font-family: Pixeboy;
+  font-size: 0.75rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.todo-item.done .todo-text {
+  text-decoration: line-through;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.todo-deadline {
+  color: rgba(255, 255, 255, 0.5);
+  font-family: Pixeboy;
+  font-size: 0.6rem;
+}
+
+.todo-deadline.due-today {
+  color: #FFB3C1;
+}
+
+.todo-delete {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.6rem;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.todo-delete:hover {
+  color: #FFB3C1;
+}

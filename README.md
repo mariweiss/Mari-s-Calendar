@@ -14,7 +14,7 @@ A cute desktop widget built with Electron that displays the current date and a t
 
 | Calendar | To-Do |
 |----------|-------|
-| ![Calendar view](assets/icon.png) | |
+| ![Calendar view](assets/icon.png) | ![Todo view](assets/icon2.png) |
 
 ## Getting Started
 
